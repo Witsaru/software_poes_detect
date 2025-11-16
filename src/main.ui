@@ -2,59 +2,31 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry"><rect><x>0</x><y>0</y><width>900</width><height>600</height></rect></property>
-  <property name="windowTitle"><string>WorkStudy Camera</string></property>
+  <property name="geometry"><rect><x>0</x><y>0</y><width>1200</width><height>720</height></rect></property>
+  <property name="windowTitle"><string>Dual Camera WorkStudy</string></property>
 
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridMain">
 
-    <!-- LEFT SIDE: CAMERA + GRAPH -->
+    <!-- LEFT SIDE: CAMERA A + GRAPH A -->
     <item row="0" column="0">
-     <widget class="QWidget" name="cameraArea">
-      <layout class="QVBoxLayout" name="cameraMainLayout">
+     <widget class="QWidget" name="leftPanel">
+      <layout class="QVBoxLayout" name="leftLayout">
 
-       <!-- CAMERA DISPLAY -->
+       <!-- CAMERA A -->
        <item>
-        <widget class="QStackedWidget" name="stackedWidget">
-         <widget class="QWidget" name="page">
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="0">
-            <widget class="QLabel" name="labelCamera">
-             <property name="text"><string/></property>
-             <property name="alignment"><set>Qt::AlignCenter</set></property>
-             <property name="styleSheet"><string>background:black;</string></property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-
-         <widget class="QWidget" name="page_2">
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0"><widget class="QVideoWidget" name="videoWidget" native="true"/></item>
-          </layout>
-         </widget>
-
+        <widget class="QLabel" name="labelCameraA">
+         <property name="minimumSize"><size><width>400</width><height>300</height></size></property>
+         <property name="styleSheet"><string>background:black;</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
         </widget>
        </item>
 
-       <!-- ANGLE GRAPH -->
+       <!-- GRAPH A -->
        <item>
-        <widget class="QWidget" name="graphContainer">
-         <layout class="QVBoxLayout" name="graphLayout">
-          <item>
-           <widget class="QLabel" name="graphTitle">
-            <property name="text"><string>Angle Graph</string></property>
-            <property name="alignment"><set>Qt::AlignCenter</set></property>
-            <property name="styleSheet"><string>font-weight:bold; font-size:14px;</string></property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="graphWidget" native="true">
-            <property name="minimumHeight"><number>160</number></property>
-            <property name="styleSheet"><string>background:white; border:1px solid #ccc;</string></property>
-           </widget>
-          </item>
-         </layout>
+        <widget class="QWidget" name="graphWidgetA">
+         <property name="minimumHeight"><number>180</number></property>
+         <property name="styleSheet"><string>background:white; border:1px solid #ccc;</string></property>
         </widget>
        </item>
 
@@ -62,42 +34,53 @@
      </widget>
     </item>
 
-    <!-- RIGHT SIDE: CONTROL + SETTINGS -->
-    <item row="0" column="1" alignment="Qt::AlignRight">
+    <!-- RIGHT SIDE: CAMERA B + GRAPH B -->
+    <item row="0" column="1">
+     <widget class="QWidget" name="rightPanel">
+      <layout class="QVBoxLayout" name="rightLayout">
+
+       <!-- CAMERA B -->
+       <item>
+        <widget class="QLabel" name="labelCameraB">
+         <property name="minimumSize"><size><width>400</width><height>300</height></size></property>
+         <property name="styleSheet"><string>background:black;</string></property>
+         <property name="alignment"><set>Qt::AlignCenter</set></property>
+        </widget>
+       </item>
+
+       <!-- GRAPH B -->
+       <item>
+        <widget class="QWidget" name="graphWidgetB">
+         <property name="minimumHeight"><number>180</number></property>
+         <property name="styleSheet"><string>background:white; border:1px solid #ccc;</string></property>
+        </widget>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+    <!-- CONTROL / SETTINGS TAB -->
+    <item row="0" column="2">
      <widget class="QTabWidget" name="tabWidget">
-      <property name="currentIndex"><number>0</number></property>
+      <property name="minimumWidth"><number>260</number></property>
 
       <!-- CONTROL TAB -->
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="tabControl">
        <attribute name="title"><string>Control</string></attribute>
        <layout class="QVBoxLayout" name="controlLayout">
 
         <item>
          <widget class="QPushButton" name="btnStart">
-          <property name="maximumSize"><size><width>100</width><height>45</height></size></property>
-          <property name="styleSheet"><string>background-color:#2ecc71; color:white; font-weight:bold; border-radius:8px;</string></property>
-          <property name="text"><string>Start</string></property>
+          <property name="text"><string>Start Both</string></property>
+          <property name="styleSheet"><string>background:#2ecc71; color:white; font-weight:bold; padding:8px;</string></property>
          </widget>
         </item>
 
         <item>
          <widget class="QPushButton" name="btnStop">
-          <property name="maximumSize"><size><width>100</width><height>45</height></size></property>
-          <property name="styleSheet"><string>background-color:#e74c3c; color:white; font-weight:bold; border-radius:8px;</string></property>
-          <property name="text"><string>Stop</string></property>
-         </widget>
-        </item>
-
-        <!-- ANGLE INFO -->
-        <item>
-         <widget class="QGroupBox" name="angleBox">
-          <property name="title"><string>Body Angles</string></property>
-          <layout class="QVBoxLayout" name="angleGrid">
-           <item><widget class="QLabel" name="lblNeck"><property name="text"><string>Neck: --°</string></property></widget></item>
-           <item><widget class="QLabel" name="lblArm"><property name="text"><string>Arm: --°</string></property></widget></item>
-           <item><widget class="QLabel" name="lblBody"><property name="text"><string>Body: --°</string></property></widget></item>
-           <item><widget class="QLabel" name="lblLeg"><property name="text"><string>Leg: --°</string></property></widget></item>
-          </layout>
+          <property name="text"><string>Stop Both</string></property>
+          <property name="styleSheet"><string>background:#e74c3c; color:white; font-weight:bold; padding:8px;</string></property>
          </widget>
         </item>
 
@@ -105,29 +88,28 @@
       </widget>
 
       <!-- SETTINGS TAB -->
-      <widget class="QWidget" name="tab_2">
+      <widget class="QWidget" name="tabSettings">
        <attribute name="title"><string>Settings</string></attribute>
-       <layout class="QVBoxLayout" name="settingsGrid">
+       <layout class="QVBoxLayout" name="settingsLayout">
 
         <item>
-         <widget class="QLabel" name="lblDeviceTitle">
-          <property name="text"><string>Camera Device</string></property>
-          <property name="styleSheet"><string>font-weight:bold; font-size:14px;</string></property>
-         </widget>
+         <widget class="QLabel" name="lblCamA_Title"><property name="text"><string>Camera A</string></property></widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboCameraA"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblActiveCamA"><property name="text"><string>Active: None</string></property></widget>
         </item>
 
         <item>
-         <widget class="QComboBox" name="comboCamera">
-          <property name="minimumWidth"><number>200</number></property>
-          <property name="toolTip"><string>Select active camera</string></property>
-         </widget>
+         <widget class="QLabel" name="lblCamB_Title"><property name="text"><string>Camera B</string></property></widget>
         </item>
-
         <item>
-         <widget class="QLabel" name="lblActiveCam">
-          <property name="text"><string>Active Camera: None</string></property>
-          <property name="styleSheet"><string>color:#2c3e50;</string></property>
-         </widget>
+         <widget class="QComboBox" name="comboCameraB"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblActiveCamB"><property name="text"><string>Active: None</string></property></widget>
         </item>
 
        </layout>
@@ -139,26 +121,9 @@
    </layout>
   </widget>
 
-  <!-- MENU BAR -->
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry"><rect><x>0</x><y>0</y><width>900</width><height>22</height></rect></property>
-   <widget class="QMenu" name="menuFile"><property name="title"><string>File</string></property></widget>
-   <widget class="QMenu" name="menuDevices"><property name="title"><string>Devices</string></property></widget>
-   <widget class="QMenu" name="menuHelp"><property name="title"><string>Help</string></property></widget>
-   <addaction name="menuFile"/><addaction name="menuDevices"/><addaction name="menuHelp"/>
-  </widget>
+  <widget class="QMenuBar" name="menubar"/>
 
  </widget>
-
- <customwidgets>
-  <customwidget>
-   <class>QVideoWidget</class>
-   <extends>QWidget</extends>
-   <header>qvideowidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
-
  <resources/>
  <connections/>
 </ui>
