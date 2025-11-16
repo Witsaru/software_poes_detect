@@ -67,11 +67,21 @@ class WorkStudyCamera(QMainWindow):
         self.ui = loader.load("main.ui", None)
         self.setCentralWidget(self.ui)
 
-        self.camera_m = camera.camera_module()
+        self.cameraA = camera.camera_module()
+        self.cameraB = camera.camera_module()
         self.detector = dm.module_detection()
         self.cal = cal.Cal_function()
 
         # UI
+        self.labelCameraA
+        self.labelCameraB
+        self.comboCameraA
+        self.comboCameraB
+        self.graphWidgetA
+        self.graphWidgetB
+        self.lblActiveCamA
+        self.lblActiveCamB
+
         self.label_cam = self.ui.labelCamera
         self.label_cam.setScaledContents(True)
         self.label_cam.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -90,7 +100,8 @@ class WorkStudyCamera(QMainWindow):
         # self.pose = dm.module_detection().set_detection_conf()
 
         self.cap = None
-        self.timer = QTimer()
+        self.timerA = QTimer()
+        self.timerB = QTimer()
         self.timer.timeout.connect(self.update_frame)
 
         # Camera functions
